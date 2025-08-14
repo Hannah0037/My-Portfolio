@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hannah Limbaga | Digital Portfolio</title>
+    <style>
+        /* ===== BABY PINK COLOR SCHEME ===== */
+        :root {
+            --primary: #FFD1DC;  /* Classic baby pink */
+            --secondary: #FFB7C5; /* Slightly darker pink */
+            --accent: #FF85A2;   /* Medium pink for accents */
+            --dark: #8A5A44;     /* Warm brown for text */
+            --light: #FFF9FB;     /* Very light pink background */
+        }
+        
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ===== HEADER STYLES ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(138, 90, 68, 0.1);
+        }
+        
+        h1, h2, h3 {
+            color: var(--dark);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .tagline {
+            font-weight: 300;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* ===== TAB NAVIGATION ===== */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--dark);
+        }
+        
+        .tab-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 177, 197, 0.3);
+        }
+        
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 177, 197, 0.1);
+            margin-bottom: 30px;
+            border: 1px solid var(--primary);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        /* ===== SKILLS SECTION ===== */
+        .skill-category {
+            margin-bottom: 30px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .skill-bars {
+            margin-top: 20px;
+        }
+        
+        .skill-bar {
+            height: 20px;
+            background: #FFE5EC;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 10px;
+            transition: width 1s;
+        }
+        
+        /* ===== PORTFOLIO GRID ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(255, 177, 197, 0.2);
+            transition: all 0.3s;
+            background: white;
+            border: 1px solid var(--primary);
+            padding: 20px;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 177, 197, 0.3);
+        }
+        
+        .portfolio-info {
+            padding: 0;
+        }
+        
+        /* ===== CONTACT FORM ===== */
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            font-family: inherit;
+            background: #FFF9FB;
+        }
+        
+        .contact-form button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 177, 197, 0.3);
+        }
+        
+        /* ===== HIGHLIGHT BOXES ===== */
+        .highlight-box {
+            background: #FFECF1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                margin: 5px 0;
+                width: 80%;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER SECTION ===== -->
+    <header>
+        <div class="container">
+            <h1>HANNAH CHRISTINA LIMBAGA</h1>
+            <p class="tagline">Content Creator & Digital Marketing Specialist</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- ===== NAVIGATION TABS ===== -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab('about')">About Me</button>
+            <button class="tab-btn" onclick="openTab('skills')">Skills</button>
+            <button class="tab-btn" onclick="openTab('portfolio')">Portfolio</button>
+            <button class="tab-btn" onclick="openTab('experience')">Experience</button>
+            <button class="tab-btn" onclick="openTab('contact')">Contact</button>
+        </div>
+
+        <!-- ===== ABOUT TAB ===== -->
+        <div id="about" class="tab-content active">
+            <h2>Professional Profile</h2>
+            <p>Highly adaptable professional with proven skills in content creation, social media management, and independent project execution. With strong English skills and a keen eye for detail, I excel at creating engaging social media content.</p>
+            
+            <div class="highlight-box">
+                <h3>Key Strengths</h3>
+                <ul>
+                    <li>Experienced with CapCut, AI tools, and scheduling platforms</li>
+                    <li>Professional remote setup (stable internet, quiet workspace)</li>
+                    <li>Available 4 PM-8 PM Manila time to align with UK operations</li>
+                    <li>Organized and proactive work approach</li>
+                </ul>
+            </div>
+            
+            <h3>Education</h3>
+            <p><strong>Bachelor of Science in Information Technology</strong><br>
+            STI West Negros University | 2022-2025</p>
+        </div>
+
+        <!-- ===== SKILLS TAB ===== -->
+        <div id="skills" class="tab-content">
+            <h2>Core Skills</h2>
+            
+            <div class="skill-category">
+                <h3>Social Media Growth</h3>
+                <div class="skill-bars">
+                    <div class="skill">
+                        <p>Video Editing (CapCut)</p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Thumbnail Design (Canva)</p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Affiliate Marketing</p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Content Creation</h3>
+                <div class="skill-bars">
+                    <div class="skill">
+                        <p>TikTok Content Strategy</p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Trend Analysis</p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PORTFOLIO TAB ===== -->
+        <div id="portfolio" class="tab-content">
+            <h2>My Work Portfolio</h2>
+            <p>Here are some examples of my content creation and social media projects:</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3>TikTok Viral Content</h3>
+                        <p>Grew audience to 23,000 followers with 780,000-3M total views across various content types.</p>
+                        <ul>
+                            <li>Created daily engaging content</li>
+                            <li>Optimized posting schedule for maximum reach</li>
+                            <li>Developed unique content themes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3>Affiliate Marketing Campaigns</h3>
+                        <p>Partnered with 100+ brands for successful affiliate marketing campaigns.</p>
+                        <ul>
+                            <li>Negotiated partnership terms</li>
+                            <li>Created conversion-focused content</li>
+                            <li>Tracked and analyzed campaign performance</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3>Social Media Management</h3>
+                        <p>Created engaging content across multiple platforms with consistent branding.</p>
+                        <ul>
+                            <li>Developed content calendars</li>
+                            <li>Maintained brand voice across platforms</li>
+                            <li>Increased engagement rates by 40%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== EXPERIENCE TAB ===== -->
+        <div id="experience" class="tab-content">
+            <h2>Professional Experience</h2>
+            
+            <div class="highlight-box">
+                <h3>TikTok PH</h3>
+                <p><strong>Content Creator & Affiliate Marketer</strong></p>
+                <ul>
+                    <li>Grew TikTok audience to 23,000 followers and 780,000 - 3 Million total views through viral content</li>
+                    <li>Partnered with more than 100+ different brands for affiliate marketing campaigns</li>
+                    <li>Developed expertise in creating engaging content that drives audience growth</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== CONTACT TAB ===== -->
+        <div id="contact" class="tab-content">
+            <h2>Get In Touch</h2>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong> 09630551237</p>
+                    <p><strong>Email:</strong> hannahlimbaga030704@gmail.com</p>
+                    <p><strong>Location:</strong> Bacolod City, Negros Occidental, Philippines</p>
+                    <p><strong>Availability:</strong> 4 PM-8 PM Manila time (9 AM-1 PM UK time)</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3>Connect With Me</h3>
+                        <div style="display: flex; gap: 15px;">
+                            <a href="#" style="background: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dark); text-decoration: none;">T</a>
+                            <a href="#" style="background: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dark); text-decoration: none;">L</a>
+                            <a href="#" style="background: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dark); text-decoration: none;">F</a>
+                            <a href="#" style="background: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dark); text-decoration: none;">I</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Send Me a Message</h3>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+        
+        // Animate skill bars when skills tab is opened
+        document.querySelector('.tab-btn[onclick="openTab(\'skills\')"]').addEventListener('click', function() {
+            setTimeout(() => {
+                const skillBars = document.querySelectorAll('.skill-progress');
+                skillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
